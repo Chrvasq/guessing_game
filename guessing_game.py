@@ -33,7 +33,8 @@ def start_game(high_score=None):
             if guess not in range(1, 11):
                 raise ValueError
         except ValueError:
-            print('Your guess should be between 1 and 10. Please try again!')
+            print('Your guess should be an integer between 1 and 10. ' +
+                'Please try again!')
         else:
             if guess > solution:
                 print('It\'s lower!')

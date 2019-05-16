@@ -9,7 +9,7 @@ Project 1 - Number Guessing Game
 import random
 
 
-def start_game(high_score=None):
+def start_game(high_score=None, score_tracker=[]):
     # Display an intro/welcome message to the player.
     welcome_message = ' Welcome to the Guessing Game! '
     print('\n')
@@ -46,14 +46,16 @@ def start_game(high_score=None):
                 print('You got it!')
                 guess_count += 1
                 game_state = False
+                score_tracker.append(guess_count)
+                print(score_tracker)
 
     print(f'You guessed in {guess_count} attempts!')
 
     replay = input('Would you like to play again? Y/N: ')
 
     if replay.lower() == 'y':
-        high_score = guess_count
-        start_game(high_score)
+        high_score = min(score_tracker)
+        start_game(high_score, score_tracker)
     else:
         print('The game is now over. Thanks for playing!')
 

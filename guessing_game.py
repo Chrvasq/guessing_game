@@ -51,13 +51,19 @@ def start_game(high_score=None, score_tracker=[]):
 
     print(f'You guessed in {guess_count} attempts!')
 
-    replay = input('Would you like to play again? Y/N: ')
-
-    if replay.lower() == 'y':
-        high_score = min(score_tracker)
-        start_game(high_score, score_tracker)
-    else:
-        print('The game is now over. Thanks for playing!')
+    while not game_state:
+        try:
+            replay = input('Would you like to play again? Y/N: ')
+            if replay not in ['Y', 'y', 'N', 'n']:
+                raise ValueError
+        except ValueError:
+            print('That\'s not a correct option. Please enter \'Y\' or \'N\'.')
+        else:
+            if replay.lower() == 'y':
+                high_score = min(score_tracker)
+                start_game(high_score, score_tracker)
+            else:
+                print('The game is now over. Thanks for playing!')
 
 
 if __name__ == '__main__':

@@ -19,8 +19,9 @@ def get_user_input():
         else:
             return user_input
     except ValueError:
-        print('\n Your guess should be an integer between 1 and 10. ' +
-            'Please try again! \n')
+        print('\n Your guess should be an integer between 1 and 10. \
+            Please try again! \n')
+
 
 def replay_game():
     user_input = ''
@@ -32,8 +33,9 @@ def replay_game():
         else:
             return user_input
     except ValueError:
-        print('\n That\'s not a correct option. ' +
-            'Please enter \'Y\' or \'N\'. \n')
+        print('\n That\'s not a correct option. \
+            Please enter \'Y\' or \'N\'. \n')
+
 
 def start_game(high_score=None, score_tracker=[]):
     # Display an intro/welcome message to the player.
@@ -43,12 +45,12 @@ def start_game(high_score=None, score_tracker=[]):
     print(f'#{welcome_message}#')
     print('#' * (len(welcome_message) + 2))
     print('\nObjective: Try to guess the number between 1 and 10!\n')
-    
+
     if high_score:
         print(f'The High Score to beat is {high_score}.\n')
 
     # Store a random number as the answer/solution.
-    solution = random.randint(1,10)
+    solution = random.randint(1, 10)
     game_state = True
     guess_count = 0
     replay = True

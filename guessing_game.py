@@ -22,6 +22,18 @@ def get_user_input():
         print('Your guess should be an integer between 1 and 10. ' +
             'Please try again!')
 
+def replay_game():
+    user_input = ''
+
+    try:
+        user_input = input('Would you like to play again? Y/N: ')
+        if user_input.lower() not in ['y', 'n']:
+            raise ValueError
+        else:
+            return user_input
+    except ValueError:
+        print('That\'s not a correct option. Please enter \'Y\' or \'N\'.')
+
 def start_game(high_score=None, score_tracker=[]):
     # Display an intro/welcome message to the player.
     welcome_message = ' Welcome to the Guessing Game! '
@@ -38,6 +50,7 @@ def start_game(high_score=None, score_tracker=[]):
     solution = random.randint(1,10)
     game_state = True
     guess_count = 0
+    replay = True
 
     # Continuously prompt the player for a guess.
     while game_state:
@@ -60,20 +73,18 @@ def start_game(high_score=None, score_tracker=[]):
 
     print(f'You guessed in {guess_count} attempts!')
 
-    while not game_state:
-        try:
-            replay = input('Would you like to play again? Y/N: ')
-            if replay.lower() not in ['y', 'n']:
-                raise ValueError
-        except ValueError:
-            print('That\'s not a correct option. Please enter \'Y\' or \'N\'.')
+    while replay:
+        play_again = replay_game()
+
+        if play_again is None:
+            continue
         else:
-            if replay.lower() == 'y':
+            if play_again.lower() == 'y':
                 high_score = min(score_tracker)
                 start_game(high_score, score_tracker)
             else:
-                print('\n The game is now over. Thanks for playing!\n ')
-                break
+                print('\n ** The game is now over. Thanks for playing! **\n')
+                replay = False
 
 
 if __name__ == '__main__':

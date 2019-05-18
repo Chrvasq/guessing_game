@@ -19,8 +19,8 @@ def get_user_input():
         else:
             return user_input
     except ValueError:
-        print('Your guess should be an integer between 1 and 10. ' +
-            'Please try again!')
+        print('\n Your guess should be an integer between 1 and 10. ' +
+            'Please try again! \n')
 
 def replay_game():
     user_input = ''
@@ -32,7 +32,8 @@ def replay_game():
         else:
             return user_input
     except ValueError:
-        print('That\'s not a correct option. Please enter \'Y\' or \'N\'.')
+        print('\n That\'s not a correct option. ' +
+            'Please enter \'Y\' or \'N\'. \n')
 
 def start_game(high_score=None, score_tracker=[]):
     # Display an intro/welcome message to the player.
@@ -60,18 +61,18 @@ def start_game(high_score=None, score_tracker=[]):
             continue
         else:
             if guess > solution:
-                print('It\'s lower!')
+                print('\n It\'s lower! \n')
                 guess_count += 1
             elif guess < solution:
-                print('It\'s higher!')
+                print('\n It\'s higher! \n')
                 guess_count += 1
             else:
-                print('You got it!')
+                print('\n ** You got it! **\n')
                 guess_count += 1
                 game_state = False
                 score_tracker.append(guess_count)
 
-    print(f'You guessed in {guess_count} attempts!')
+    print(f'** You guessed in {guess_count} attempts! **\n')
 
     while replay:
         play_again = replay_game()
@@ -83,7 +84,7 @@ def start_game(high_score=None, score_tracker=[]):
                 high_score = min(score_tracker)
                 start_game(high_score, score_tracker)
             else:
-                print('\n ** The game is now over. Thanks for playing! **\n')
+                print('\n** The game is now over. Thanks for playing! **\n')
                 replay = False
 
 

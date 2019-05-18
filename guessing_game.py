@@ -10,15 +10,17 @@ import random
 
 
 def get_user_input():
+    user_input = ''
+
     try:
         user_input = int(input('Pick a number between 1 and 10: '))
         if user_input not in range(1, 11):
             raise ValueError
+        else:
+            return user_input
     except ValueError:
         print('Your guess should be an integer between 1 and 10. ' +
             'Please try again!')
-        get_user_input()
-    return user_input
 
 def start_game(high_score=None, score_tracker=[]):
     # Display an intro/welcome message to the player.
@@ -41,17 +43,20 @@ def start_game(high_score=None, score_tracker=[]):
     while game_state:
         guess = get_user_input()
 
-        if guess > solution:
-            print('It\'s lower!')
-            guess_count += 1
-        elif guess < solution:
-            print('It\'s higher!')
-            guess_count += 1
+        if guess is None:
+            continue
         else:
-            print('You got it!')
-            guess_count += 1
-            game_state = False
-            score_tracker.append(guess_count)
+            if guess > solution:
+                print('It\'s lower!')
+                guess_count += 1
+            elif guess < solution:
+                print('It\'s higher!')
+                guess_count += 1
+            else:
+                print('You got it!')
+                guess_count += 1
+                game_state = False
+                score_tracker.append(guess_count)
 
     print(f'You guessed in {guess_count} attempts!')
 

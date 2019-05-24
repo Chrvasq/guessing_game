@@ -19,8 +19,8 @@ def get_user_input():
         else:
             return user_input
     except ValueError:
-        print('\n Your guess should be an integer between 1 and 10. \
-            Please try again! \n')
+        print('\n Your guess should be an integer between 1 and 10. ' 
+              'Please try again! \n')
 
 
 def replay_game():
@@ -33,8 +33,8 @@ def replay_game():
         else:
             return user_input
     except ValueError:
-        print('\n That\'s not a correct option. \
-            Please enter \'Y\' or \'N\'. \n')
+        print('\n That\'s not a correct option. '
+              'Please enter \'Y\' or \'N\'. \n')
 
 
 def start_game(high_score=None, score_tracker=[]):
